@@ -1,0 +1,37 @@
+.Dashborad{
+    /* background: linear-gradient(
+        106.37deg,
+        #60c1e8 29.63%,
+        #5382e9 51.55%,
+        #a25ad5 90.85%
+    ); */
+    background-color: rgb(194, 222, 246);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.DashGlass{
+    display: grid;
+    height: 97%;
+    width: 97%;
+    border-radius: 2rem;
+    background-color: var(--glass);
+    overflow: hidden;
+    grid-template-columns: 17rem auto ;
+    gap: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    .DashGlass{
+      grid-template-columns: 10% 50% ;
+      overflow-y: scroll;
+    } 
+  }
+
+  @media screen and (max-width: 768px) {
+    .DashGlass{
+      grid-template-columns: 1fr;
+    } 
+  }
