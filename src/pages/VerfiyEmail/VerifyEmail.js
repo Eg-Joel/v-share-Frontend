@@ -10,12 +10,10 @@ export default function Verifyemail() {
   const user = useSelector((state)=>state.user);
   const [resendDisabled, setResendDisabled] = useState(false);
   const [countdown, setCountdown] = useState(60);
-  console.log(user)
+  
   const userDetails = user.user;
   const id = userDetails?.user;
-  console.log(id);
-  console.log(userDetails)
-
+ 
   const handleOTP = (e)=>{
     e.preventDefault();
     VerifyEmail(dispatch ,{OTP:OTP ,user:id});

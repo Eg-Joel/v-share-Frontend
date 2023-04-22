@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Resetpassword() {
   const location = useLocation();
   const code = location.search.split("?")[1];
-  console.log(code);
+ 
   const [password , setpassword] = useState("");
-  console.log(password);
+
   const handleClick = async(e)=>{
     e.preventDefault();
     await fetch(`http://localhost:5000/api/user/reset/password?${code}` , {method:"PUT" , headers:{'Content-Type':"application/JSON"} , body:JSON.stringify({password:password})}).then((data)=>{
