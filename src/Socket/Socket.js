@@ -1,4 +1,4 @@
 import io from 'socket.io-client';
-const socket = io('ws://localhost:8900');
+const socket = io('wss://v-share.fun');
 
 export default socket;

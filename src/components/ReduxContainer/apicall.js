@@ -15,7 +15,7 @@ export const login = async(dispatch, user)=>{
     
     } catch (error) {
       console.log(error,"p");
-      if ( error.response.data.msg ) {
+      if ( error?.response?.data?.msg ) {
         
         dispatch(loginFailure(error.response.data.msg))
     } else {
