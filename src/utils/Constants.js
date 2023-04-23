@@ -1,2 +1,2 @@
-export const baseUrl = "https://var/www/v-share.fun/api/"
+export const baseUrl = "https://v-share.fun/api/"
 
