@@ -8,13 +8,16 @@ import { useState } from 'react'
 import app from "../../firebase"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {ToastContainer,toast} from 'react-toastify';
-
+import axios from '../../utils/axios'
 import 'react-toastify/dist/ReactToastify.css';
 function Content() {
 
   const userDetails = useSelector((state)=>state.user);
   let user = userDetails?.user
-  
+  const accesstoken = user?.accessToken
+  const config = {
+    headers: { token: ` ${accesstoken}` }
+  }
   let id = user?.other?._id;
   const [File , setFile] = useState(null) 
   const [File2,setFile2] = useState(null)
@@ -63,7 +66,8 @@ function Content() {
     // Handle successful uploads on complete
     // For instance, get the download URL: https://firebasestorage.googleapis.com/... 
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      fetch('http://localhost:5000/api/post/user/post', {method:"POST" , headers:{'Content-Type':"application/JSON",token: accessToken},body:JSON.stringify({title:title , image:downloadURL,video:''})}).then((data)=>{
+      axios.post(`post/user/post`,{title:title , image:downloadURL,video:''},config).then((data)=>{
+
         toast.success('Your Post upload successful')
         window.location.reload(true)
       
@@ -99,7 +103,7 @@ function Content() {
       // Handle successful uploads on complete
       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-       fetch('http://localhost:5000/api/post/user/post', {method:"POST" , headers:{'Content-Type':"application/JSON",token: accessToken},body:JSON.stringify({title:title , video:downloadURL , image:''})}).then((data)=>{
+        axios.post(`post/user/post`,{title:title , video:downloadURL , image:''},config).then((data)=>{
         toast.success('Your Post upload successful')
         window.location.reload(true)
       }) 
@@ -107,7 +111,7 @@ function Content() {
     }
   );
     }else{
-      fetch('http://localhost:5000/api/post/user/post', {method:"POST" , headers:{'Content-Type':"application/JSON",token: accessToken},body:JSON.stringify({title:title ,  image:'', video:'' })}).then((data)=>{
+      axios.post(`post/user/post`,{title:title ,  image:'', video:'' },config).then((data)=>{
         toast.success('Your Post upload successful')
         window.location.reload(true)
       }) 

@@ -1,4 +1,5 @@
 
+import axios from '../../utils/axios';
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import {ToastContainer,toast} from 'react-toastify';
@@ -12,7 +13,7 @@ export default function Resetpassword() {
 
   const handleClick = async(e)=>{
     e.preventDefault();
-    await fetch(`http://localhost:5000/api/user/reset/password?${code}` , {method:"PUT" , headers:{'Content-Type':"application/JSON"} , body:JSON.stringify({password:password})}).then((data)=>{
+    await axios.put(`user/reset/password?${code}`,{password:password}).then((data)=>{
       toast.success("Your password rest successfully")
     })
   };  

@@ -85,22 +85,25 @@ function Post({ post }) {
   const sortedComments = [...Comments].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   let subtitle;
-  const token = accesstoken
+  
 
   const config = {
-    headers: { token: ` ${token}` }
+    headers: { token: ` ${accesstoken}` }
   }
+ 
   // console.log(post);
 
   const handleLike = async () => {
     if (Like == Likebtn) {
-      await fetch(`http://localhost:5000/api/post/${post._id}/like`, { method: "PUT", headers: { 'Content-Type': "application/Json", token: accesstoken } })
+      
+     await axios.put(`post/${post._id}/like`,null,config)
+   
       setLike(Likedbtn)
       setCount(Count + 1)
 
     } else {
-      await fetch(`http://localhost:5000/api/post/${post._id}/dislike`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken } })
-      setLike(Likebtn)
+     await axios.put(`post/${post._id}/dislike`,null,config)
+       setLike(Likebtn)
       setCount(Count - 1)
 
     }
@@ -110,7 +113,9 @@ function Post({ post }) {
   useEffect(() => {
     const getLikedUsres = async () => {
       try {
+        
         const res = await axios.get(`post/likedUsers/${post._id}`, config)
+       
         SetLikedUsers(res.data)
       } catch (error) {
 
@@ -130,12 +135,7 @@ function Post({ post }) {
       }
       const updatedComments = [...Comments, comment];
       setCommentadded('');
-
-
-
-      // console.log(currentUser.other?.profile,"jjij");
-
-      await fetch(`http://localhost:5000/api/post/comment/post`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken }, body: JSON.stringify(comment) })
+       await fetch(`https://v-share.fun/api/post/comment/post`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken }, body: JSON.stringify(comment) })
 
 
       SetComments(updatedComments);
@@ -176,7 +176,8 @@ function Post({ post }) {
   const deleteMutation = useMutation(
 
     (postId) =>
-      fetch(`http://localhost:5000/api/post/deletepost/${postId}`, { method: "delete", headers: { 'Content-Type': 'application/Json', token: accesstoken } }),
+    axios.delete(`post/deletepost/${postId}`,config)
+     ,
     {
       onSuccess: () => {
         setIsDeleted(true);
@@ -219,8 +220,10 @@ function Post({ post }) {
   }
   const handleEdit = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/post/update/post/${post._id}`, { method: "PUT", headers: { 'Content-Type': "application/Json", token: accesstoken }, body: JSON.stringify({ title: newTitle }) })
-      const updatedPost = await response.json();
+      const response = await axios.put(`post/update/post/${post._id}`,{ title: newTitle },config)
+      
+      const updatedPost = response.data
+      
       setPosts(updatedPost)
       setNewTitle(updatedPost.title)
       setModelIsOpen(false)
@@ -288,7 +291,7 @@ function Post({ post }) {
       if (result.isConfirmed) {
 
         axios.put(`post/${post._id}/deleteComment`, { _id }, config).then((res) => {
-          console.log(res, "lo");
+       
           toast.success('Post Deleted')
           const newComments = Comments.filter(comment => comment._id !== _id);
           SetComments(newComments);

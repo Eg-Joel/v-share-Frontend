@@ -17,6 +17,9 @@ import Report from './pages/Admin/AdminDashborad/Report';
 import Notification from './pages/Notification/Notification';
 import Chats from './pages/chats/Chats';
 import Chating from './pages/Chating/Chating';
+import Following from './pages/Follwing/Following';
+import Followers from './pages/Friends/FriendsPage';
+import FollowersL from './pages/Followers/FollowersL';
 
 
 function App() {
@@ -39,6 +42,9 @@ function App() {
       <Route path="/login" element={ user?.other?.verfied === true ? <Navigate to={"/"} replace={true}/> : <Login />}></Route>
       <Route path="/signup" element={  <Signup />}></Route>
       <Route path="/Profile/:id" element={user?.other?.verfied === true ? <Profile/> : <Navigate to={"/login"} replace={true}/>}></Route>
+      <Route path="/following/:id" element={user?.other?.verfied === true ? <Following/> : <Navigate to={"/login"} replace={true}/>}></Route>
+      <Route path="/followers/:id" element={user?.other?.verfied === true ? <FollowersL/> : <Navigate to={"/login"} replace={true}/>}></Route>
+      <Route path="/friends" element={user?.other?.verfied === true ? <Followers/> : <Navigate to={"/login"} replace={true}/>}></Route>
       <Route path="/verify/email" element={user?.Status === "pending" ? <Verifyemail/> :user?.other?.verfied === true ? <Navigate to={"/"} replace={true}/> : <Login/> }></Route>
       <Route path="/forgot/password" element={<Forgotpassword/>}></Route>
       <Route path="/reset/password" element={<Resetpassword/>}></Route>

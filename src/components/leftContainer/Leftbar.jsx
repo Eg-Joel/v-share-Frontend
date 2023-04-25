@@ -47,7 +47,11 @@ function Leftbar() {
         heading: 'Notifications',
         path: `/notification`
       },
-    
+      {
+        icon: NotificationsIcon,
+        heading: 'Notifications',
+        path: `/friends`
+      },
     
     
   ];

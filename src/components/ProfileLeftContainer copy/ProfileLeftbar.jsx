@@ -46,7 +46,7 @@ function ProfileLeftbar() {
   }, [userDetails]);
   // const [Follow, setFollow] = useState([user.other.following.includes(id) ? "Unfollow" : "Follow"]);
   const userid = user.other._id
-  // let username = user?.other?.username
+  
    const [Follow, setFollow] = useState("");
 
   useEffect(() => {
@@ -102,8 +102,8 @@ function ProfileLeftbar() {
     }
     getFollowing()
   }, [id, currentPage])
-  const handlePageChange = (page) => {
-    setCurrentPage(page + page)
+  const handlePageChange = () => {
+    navigate(`/following/${id}`);
   };
 
 
@@ -326,7 +326,7 @@ const handleUnFollow = async (friendId)=>{
           <p style={{ marginLeft: 10 }}>Friends</p>
 
 
-          <p style={{ marginRight: 10, color: "#aaa", cursor: "pointer" }} onClick={() => handlePageChange(1)}>See all</p>
+          <p style={{ marginRight: 10, color: "#aaa", cursor: "pointer" }} onClick={ handlePageChange}>See all</p>
         </div>
         <div style={{ display: 'flex', flexWrap: "wrap", marginLeft: 5 }}>
           {followingUser.map((item, index) => (
@@ -338,13 +338,13 @@ const handleUnFollow = async (friendId)=>{
             </Link>
           ))}
         </div>
-        <div className="pagination">
+        {/* <div className="pagination">
           {Array.from(Array(totalPages).keys()).map((page) => (
             <div key={page} className={currentPage === page + 1 ? "active" : ""} onClick={() => handlePageChange(page + 1)}>
               {page + 1}
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* <div className='notificationContainer'>

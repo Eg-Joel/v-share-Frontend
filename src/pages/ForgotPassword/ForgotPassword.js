@@ -1,4 +1,5 @@
 
+import axios from '../../utils/axios';
 import React, { useState } from 'react'
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,7 +8,7 @@ export default function Forgotpassword() {
   const [email , setEmail] = useState('');
 const handleclick = async(e)=>{
   e.preventDefault();
-  await fetch(`http://localhost:5000/api/user/forgot/password` , {method:"POST" , headers:{"Content-Type":"application/JSON"} , body:JSON.stringify({email:email})}).then(()=>{
+  await axios.post(`user/forgot/password`,{email:email}).then(()=>{
     toast.success("We sent you a token email")
   }).catch(()=>{
     toast.warning("Fail to proccess")

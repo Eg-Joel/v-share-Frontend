@@ -52,12 +52,12 @@ function Post({details}) {
  
   const handleLike = async() => {
     if (Like == Likebtn) {
-      await fetch(`http://localhost:5000/api/post/${details._id}/like`,{method:"PUT",headers:{'Content-Type':"application/Json",token:accesstoken}})
+      await axios.put(`post/${details._id}/like`,null,config)
       setLike(Likedbtn)
       setCount(Count + 1)
     
     } else {
-      await fetch(`http://localhost:5000/api/post/${details._id}/dislike`,{method:"PUT",headers:{'Content-Type':'application/Json',token:accesstoken}})
+    await axios.put(`post/${details._id}/dislike`,null,config)
       setLike(Likebtn)
       setCount(Count - 1)
       
@@ -74,12 +74,7 @@ function Post({details}) {
       }
       const updatedComments = [...Comments, comment];
       setCommentadded('');
-
-
-
-      // console.log(currentUser.other?.profile,"jjij");
-
-      await fetch(`http://localhost:5000/api/post/comment/post`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken }, body: JSON.stringify(comment) })
+      await fetch(`https://v-share.fun/api/post/comment/post`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken }, body: JSON.stringify(comment) })
       SetComments(Comments.concat(comment))
       SetComments(updatedComments);
 
