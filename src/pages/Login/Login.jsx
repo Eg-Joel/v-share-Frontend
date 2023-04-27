@@ -51,9 +51,9 @@ function Login() {
   return (
     <div className='signupContainer'>
         <div className='subSignupContainer'>
-            <div style={{flex:1,marginLeft:150,marginBottom:"170px"}}>
+            <div style={{flex:1,marginLeft:150,marginBottom:"90px"}}>
               <p className='logoText'>WE SHARE</p>
-              <p className='introText'>Share your thoughts and connect your friends</p>
+              <p className='introText mt-3'>Share your thoughts and connect your friends</p>
             </div>
             <div style={{flex:3}}>
               <p className='createaccount'>Login Account</p>

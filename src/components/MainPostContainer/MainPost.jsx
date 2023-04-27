@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import Content from '../ContentPostContainer/Content'
 import Post from '../PostContainer/Post'
 import "./mainpost.css"
-
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 
@@ -25,7 +25,7 @@ function MainPost() {
    const getPost = async ()=>{
     try {
       
-      const res = await axios.get(`user/followerpost/${id}?page=${page}`,{
+      const res = await axios.get(`user/followerpost/${id}?page=${page}&limit=10`,{
       headers:{
         token:accesstoken
       },
@@ -33,48 +33,50 @@ function MainPost() {
     })
    
     const newPosts = res.data.posts.filter((post) => !post.isDeleted);
-    setPost(newPosts);
+    return { results: newPosts, nextPage: page + 1, totalPages: res.data.totalPages };
+    // setPost(newPosts);
     
-    setTotalPages(res.data.totalPages);
+    // setTotalPages(res.data.totalPages);
   } catch (error) {
     
     console.error(error);
+    return { results: [], nextPage: null, totalPages: 0 };
     }
    }
    useEffect(() => {
-   getPost()
-   window.addEventListener('scroll', handleScroll);
-   return () => {
-     window.removeEventListener('scroll', handleScroll);
-   }
-  }, [])
+    getPost(page).then((res) => {
+      setPost(prevPosts => [...prevPosts, ...res.results]);
+      setTotalPages(res.totalPages);
+    });
+  }, [page])
   
   
-  const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight && page < totalPages) {
+  const handleLoadMore = () => {
+    if (page < totalPages) {
       setPage(page + 1);
-      getPost();
     }
-  };
+  }
 
-  useEffect(() => {
-    getPost();
-  }, [page]);
-
+  
   return (
     <div className='mainpost'>
       <Content/>
-    
+      <InfiniteScroll
+        dataLength={post.length}
+        next={handleLoadMore}
+        hasMore={page < totalPages}
+        loader={<h4>Loading...</h4>}
+      >
       {post.map((item, index) => {
   
- 
+  
       
      return   <Post post={item} key={index}/>
   
    
  
 })} 
+</InfiniteScroll>
   
        </div>
   )

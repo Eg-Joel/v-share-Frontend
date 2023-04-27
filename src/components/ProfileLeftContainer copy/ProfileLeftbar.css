@@ -4,12 +4,11 @@
 }
 .notificationContainer{
     width: 18pc;
-    height: 50vh;
+    height: 39vh;
     background-color: rgb(255, 255, 255);
     margin-top: 20px;
     border-radius: 20px;
-    overflow: hidden;
-    overflow-y: scroll;
+  
 }
 .notificationContainers{
     width: 18pc;

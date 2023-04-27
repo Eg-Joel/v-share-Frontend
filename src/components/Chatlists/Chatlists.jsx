@@ -39,8 +39,10 @@ function Chatlists() {
     <Box flex={4}>
     <Card sx={{
       boxShadow: `-1px 6px 5px 3px rgba(0,0,0,0.25)`,
-      height: "90vh",
-      width: "98%"
+      height: "85vh",
+      width: "85%",
+      marginTop:"20px",
+      marginLeft:"30px"
     }} >
       <Box sx={{
         textAlign: "center"

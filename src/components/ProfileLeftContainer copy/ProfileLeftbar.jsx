@@ -319,11 +319,11 @@ const handleUnFollow = async (friendId)=>{
 
         {/* onChange={(e) => setNewTitle(e.target.value)}  */}
       </div>
-
+ 
       <div className='notificationContainer'>
-        <h3>Followings</h3>
+        <h3 style={{ marginLeft:65 }}>Followings</h3>
         <div style={{ display: "flex", justifyContent: 'space-between' }}>
-          <p style={{ marginLeft: 10 }}>Friends</p>
+          <p style={{ marginLeft: 15 }}>Friends</p>
 
 
           <p style={{ marginRight: 10, color: "#aaa", cursor: "pointer" }} onClick={ handlePageChange}>See all</p>

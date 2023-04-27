@@ -12,14 +12,14 @@ import { Divider } from "@mui/material";
 const Notifications = () => {
 
     const userDetails = useSelector((state) => state.user)
-  let user = userDetails.user
-  const accesstoken = user?.accessToken
-  const token = accesstoken
-  const config = {
-    headers: { token: ` ${token}` }
-  }
+    let user = userDetails.user
+    const accesstoken = user?.accessToken
+    const token = accesstoken
+    const config = {
+        headers: { token: ` ${token}` }
+    }
     const [notifications, setNotifications] = useState([]);
-    
+
     const getNotifications = async () => {
         try {
             const { data } = await axios.get(`user/notifications`, config)
@@ -30,7 +30,7 @@ const Notifications = () => {
         }
     }
 
-    
+
 
     useEffect(() => {
         getNotifications()
@@ -41,8 +41,10 @@ const Notifications = () => {
         <Box flex={4}>
             <Card sx={{
                 boxShadow: `-1px 6px 5px 3px rgba(0,0,0,0.25)`,
-                height: "90vh",
-                width: "98%"
+                height: "85vh",
+                width: "85%",
+                marginTop: "20px",
+                marginLeft: "30px"
             }} >
                 <Box sx={{
                     textAlign: "center"
@@ -60,11 +62,11 @@ const Notifications = () => {
                                 display: "none"
                             }
                         }}>
-                            {notifications.map((item,i) => {
+                            {notifications.map((item, i) => {
                                 return (
                                     <>
                                         <NotificationItem key={i} notification={item} />
-                                        <Divider/>
+                                        <Divider />
                                     </>
                                 );
                             })}

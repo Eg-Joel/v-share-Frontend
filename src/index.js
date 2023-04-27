@@ -3,23 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {store ,persistor}from './components/ReduxContainer/store'
+import { store, persistor } from './components/ReduxContainer/store'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 TimeAgo.addDefaultLocale(en);
-
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store = {store} >
-   <PersistGate loading = {null}  persistor = {persistor}>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </PersistGate>
+  <Provider store={store} >
+    <PersistGate loading={null} persistor={persistor}>
+      <QueryClientProvider client={queryClient}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </PersistGate>
   </Provider>
 );
 

@@ -20,6 +20,7 @@ import Chating from './pages/Chating/Chating';
 import Following from './pages/Follwing/Following';
 import Followers from './pages/Friends/FriendsPage';
 import FollowersL from './pages/Followers/FollowersL';
+import PageNotFound from './pages/Admin/PageNotFound';
 
 
 function App() {
@@ -58,6 +59,8 @@ function App() {
       <Route path="/users" element={  admin ? <UserMangement /> :  <AdminLogin /> }></Route>
       <Route path="/posts" element={  admin ? <PostManagement /> :  <AdminLogin /> }></Route>
       <Route path="/reports" element={  admin ? <Report /> :  <AdminLogin /> }></Route>
+
+      <Route path='*' element={<PageNotFound/>}/>
       </Routes>
       </BrowserRouter>
       

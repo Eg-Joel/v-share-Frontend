@@ -60,8 +60,8 @@ function ProfileRightbar() {
     <div className='ProfileRightbar'>
       <div className='profileRightcontainer'>
         <div style={{ display: "flex", justifyContent: 'space-between' }}>
-          <h3>Followers</h3>
-          <p style={{ marginRight: 10, color: "#aaa", cursor: "pointer" }} onClick={handlePageChange}>See all</p>
+          <h3 style={{ marginLeft:65 }}>Followers</h3>
+          <p style={{ marginRight: 10, color: "#aaa", cursor: "pointer",marginTop:"5px" }} onClick={handlePageChange}>See all</p>
 
         </div>
         <div>
@@ -81,7 +81,7 @@ function ProfileRightbar() {
       </div>
 
       <div className='rightcontainer2'>
-        <h3 style={{ marginLeft: "10px", textAlign: "start" }}>Suggested for you  </h3>
+        <h3 style={{ marginLeft: "40px", textAlign: "start" }}>Suggested for you  </h3>
         {users.map((item, index) => (
           <Follow userdetails={item} key={index} />
         ))}

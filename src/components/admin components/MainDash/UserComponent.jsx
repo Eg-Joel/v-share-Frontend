@@ -29,7 +29,7 @@ function UserComponent() {
                
                 const res=response.data.data
                 
-                setUsers(res.users)
+                setUsers(res.userCount)
                 setPageCount(res.pageCount)
             } catch (error) {
                 console.error(error);

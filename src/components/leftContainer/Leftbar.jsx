@@ -10,7 +10,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Link, useLocation } from 'react-router-dom';
 import {UilEstate} from "@iconscout/react-unicons";
 import NotificationsIcon from '@mui/icons-material/Notifications';
-
+import PeopleIcon from '@mui/icons-material/People';
 function Leftbar() {
     const userDetails = useSelector((state)=>state.user);
     const [selectedPath, setSelectedPath] = useState('');
@@ -48,8 +48,8 @@ function Leftbar() {
         path: `/notification`
       },
       {
-        icon: NotificationsIcon,
-        heading: 'Notifications',
+        icon: PeopleIcon,
+        heading: 'Friends',
         path: `/friends`
       },
     
