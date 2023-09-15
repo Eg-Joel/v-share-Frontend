@@ -1,2 +1,2 @@
-export const baseUrl = "https://v-share.onrender.com"
+export const baseUrl = "https://v-share.fun/api/"
 
