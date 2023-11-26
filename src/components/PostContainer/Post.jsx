@@ -135,9 +135,9 @@ function Post({ post }) {
       }
       const updatedComments = [...Comments, comment];
       setCommentadded('');
-       await fetch(`https://v-share.fun/api/post/comment/post`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken }, body: JSON.stringify(comment) })
+       await fetch(`https://v-share.onrender.com/api/post/comment/post`, { method: "PUT", headers: { 'Content-Type': 'application/Json', token: accesstoken }, body: JSON.stringify(comment) })
 
-
+       
       SetComments(updatedComments);
 
       toast.success('comment added')
