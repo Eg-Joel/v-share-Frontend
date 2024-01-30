@@ -63,7 +63,9 @@ function Login() {
               <ToastContainer />
               <input type="password" id='password' placeholder='******' onChange={(e)=>setPassword(e.target.value)} className='inputText'/>
               {passwordErr && <div style={{color:"white"}} className='inputText'> {passwordErr}</div>} 
-             
+              <p style={{textAlign:'start' , marginLeft:"30.6%",color:"white" }}>for demo</p>
+              <p style={{textAlign:'start' , marginLeft:"30.6%",color:"white" }}>email: joeljoww@gmail.com</p>
+              <p style={{textAlign:'start' , marginLeft:"30.6%",color:"white" }}>password: joel123</p>
               <button className='signupbtn' onClick={handleClick}>Login</button>
               <Link to={"/forgot/password"}>
           <p style={{textAlign:'start' , marginLeft:"30.6%",color:"white" }}>Forgot password</p>
